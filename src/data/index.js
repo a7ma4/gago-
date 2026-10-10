@@ -1,6 +1,9 @@
-import hero from "../assets/hero.webp";
-import brandRef from "../assets/harbor.webp";
-import productRef from "../assets/build.webp";
+import desk1 from "../assets/photo_2026-10-10_18-38-42.jpg";
+import chair1 from "../assets/photo_2026-10-10_18-38-40.jpg";
+import sofa1 from "../assets/photo_2026-10-10_18-38-37.jpg";
+import table1 from "../assets/photo_2026-10-10_18-38-36.jpg";
+import side1 from "../assets/photo_2026-10-10_18-38-35.jpg";
+import console1 from "../assets/photo_2026-10-10_18-38-34.jpg";
 
 export const products = [
   {
@@ -9,7 +12,7 @@ export const products = [
     ar: "مكتب أزور",
     price: 7950,
     cat: "Office",
-    img: productRef,
+    img: desk1,
     tag: "Port Said Series",
   },
   {
@@ -18,7 +21,7 @@ export const products = [
     ar: "كرسي الفنار",
     price: 3400,
     cat: "Living",
-    img: hero,
+    img: chair1,
     tag: "Shell Collection",
   },
   {
@@ -27,7 +30,7 @@ export const products = [
     ar: "كنبة الميناء",
     price: 18500,
     cat: "Living",
-    img: brandRef,
+    img: sofa1,
     tag: "Signature",
   },
   {
@@ -36,7 +39,7 @@ export const products = [
     ar: "ترابيزة دلتا",
     price: 6400,
     cat: "Living",
-    img: productRef,
+    img: table1,
     tag: "Woodline",
   },
   {
@@ -45,7 +48,7 @@ export const products = [
     ar: "ترابيزة فنار",
     price: 3950,
     cat: "Dining",
-    img: hero,
+    img: side1,
     tag: "Port Said Series",
   },
   {
@@ -54,18 +57,15 @@ export const products = [
     ar: "كونسول القناة",
     price: 8600,
     cat: "Dining",
-    img: brandRef,
+    img: console1,
     tag: "Heritage",
   },
 ];
 
 export const cats = [
-  ["مكتب", ""],
-  ["Dining", " "],
-  ["Bedroom", " "],
-  ["Office", ""],
-  ["Outdoor", ""],
-  ["Storage", ""],
+  ["Office", "المكتب"],
+  ["Living", "غرفة المعيشة"],
+  ["Dining", "السفرة"],
 ];
 
 export const money = (n) => new Intl.NumberFormat("en-EG").format(n) + " EGP";

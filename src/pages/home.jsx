@@ -1,196 +1,244 @@
-import React from 'react';
+import React, { useEffect, useRef } from "react";
 import Header from "../components/header.jsx";
 import BottomNav from "../components/bottomNav.jsx";
 import ProductCard from "../components/productCard.jsx";
 import { products, cats, money } from "../data";
 
-import hero from "../assets/hero.webp";
-import brandRef from "../assets/harbor.webp";
-import productRef from "../assets/build.webp";
-import heroHome from "../assets/heroHome.webp";
-import ourStory from "../assets/ourStory.webp";
-import windowFrame from "../assets/window.webp";
-import shell from "../assets/shell.png";
-import desk from "../assets/desk.png";
-// import desk1 from "../assets/desk1.png";
-import desk3 from "../assets/desk2.png";
-import desk2 from "../assets/desk3.png";
-import footer from "../assets/footer.png";
+import "../styles.css";
+
+import heroHome from "../assets/hero.jpg";
+import storyPhoto from "../assets/photo_2026-10-10_18-38-33.jpg";
+
+// فيديو الأقسام (غيّري الاسم/المسار لو عندك فيديو مختلف لكل قسم)
+import category1 from "../assets/category-1.mp4.mp4";
+
+const videos = [category1, category1, category1, category1];
+
+function HomeCategoryVideoCard({ cat, index, onNav }) {
+  const videoRef = useRef(null);
+
+  // الفيديو يشتغل بس وهو فعلاً ظاهر على الشاشة، ويوقف لما يخرج برا
+  // الشاشة — بالطريقة دي مش بنحمّل/نشغّل كل الفيديوهات مرة واحدة
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    const tryPlay = () => video.play().catch(() => {});
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          tryPlay();
+        } else {
+          video.pause();
+        }
+      },
+      { threshold: 0.4 } // يشتغل لما 40% من الكارت يبان
+    );
+
+    observer.observe(video);
+
+    return () => observer.disconnect();
+  }, []);
+
+  return (
+    <a
+      href={`#/category/${encodeURIComponent(cat[0])}`}
+      className="category-video-card"
+      onClick={(e) => {
+        e.preventDefault();
+        onNav("category", cat[0]); // الصفحة اللي هيروحلها القسم
+      }}
+      aria-label={cat[1]}
+    >
+      <video
+        ref={videoRef}
+        className="category-video"
+        src={videos[index % videos.length]}
+        muted
+        playsInline
+        preload="metadata"
+      />
+      <div className="video-overlay" />
+
+      <div className="video-topline">
+        <span>{cat[0]}</span>
+        <span className="video-play-icon">↗️</span>
+      </div>
+
+      <div className="video-content">
+        <h3>{cat[1]}</h3>
+        <span className="video-explore">القسم </span>
+      </div>
+
+      <span className="video-bottom-line" />
+    </a>
+  );
+}
 
 function Home({ onNav, onProduct }) {
   return (
-    <>
+    <div className="gago-home">
       <Header onNav={onNav} />
+
       <main className="page">
+        {/* HERO */}
         <section
-          className="hero"
-          style={{
-            backgroundImage: `linear-gradient(180deg,#1b2b3630,#1f1710dd),url(${heroHome})`,
-          }}
+          className="gago-hero"
+          style={{ backgroundImage: `url(${heroHome})` }}
         >
-          <div className="heroText">
-            <div className="eyebrow light">GAGO FURNITURE · PORT SAID</div>
-            <h1>
-              FROM LAND
-             
-              <em>TO SEA.</em>
-            </h1>
-            <p>
-              Furniture with a story.
-              <br />
-              من بورسعيد... إلى العالم.
-            </p>
-            <button className="lightPill" onClick={() => onNav("categories")}>
-              استكشف المجموعة <span>→</span>
+          <div className="hero-content">
+            <button className="hero-explore" onClick={() => onNav("categories")}>
+              <span>اكتشف المجموعة</span>
+              <span className="hero-arrow" aria-hidden="true">↗</span>
             </button>
+          </div>
+
+          <div className="hero-bottom-label">
+            <span>صُنع في بورسعيد</span>
+            <span>GAGO FURNITURE · PORT SAID, EGYPT</span>
           </div>
         </section>
 
-
-        <section className="storyStrip">
-          <div>
-            <span>OUR STORY</span>
+        {/* STORY */}
+        <section className="gago-story section">
+          <div className="story-copy">
+            <span className="eyebrow">OUR STORY · PORT SAID</span>
             <h2>
-              مدينة بدأت بالبحر
+              حكاية بدأت
               <br />
-              وأثاث يبدأ من الأرض
+              <em>من البحر.</em>
             </h2>
-            <p>Born in Port Said. Built like the city.</p>
-            <button className="lightPill2" onClick={() => onNav("about")}>
-              اكتشف قصتنا <b>→</b>
+            <p>
+              من روح بورسعيد، بنصمم قطع أثاث تجمع بين جمال الخامات
+              وبساطة التصميم، علشان كل قطعة يبقى ليها حكاية.
+            </p>
+            <button className="gago-button" onClick={() => onNav("about")}>
+              اكتشف حكايتنا <span>↗</span>
             </button>
           </div>
-          <img src={ourStory} />
+
+          <div className="story-image-wrap">
+            <img src={storyPhoto} alt="قطعة من تصميم GAGO Furniture" />
+            <span className="image-caption">INSPIRED BY THE SEA</span>
+          </div>
         </section>
 
+        {/* MOVING BRAND STRIP */}
+        <div className="gago-marquee">
+          <div className="marquee-track">
+            {[0, 1, 2, 3].map((item) => (
+              <span key={item}>
+                GAGO FURNITURE <i>✳</i> FROM PORT SAID TO THE WORLD <i>✳</i>
+              </span>
+            ))}
+          </div>
+        </div>
 
-       <div className="marquee">
-  <div className="marquee-track">
-    <div className="marquee-content">
-      FROM PORT SAID TO THE WORLD · BUILT LIKE THE CITY · FROM LAND TO SEA ·{" "}
-      <span>GAGO FURNITURE</span> ·
-    </div>
-
-    <div className="marquee-content">
-      FROM PORT SAID TO THE WORLD · BUILT LIKE THE CITY · FROM LAND TO SEA ·{" "}
-      <span>GAGO FURNITURE</span> ·
-    </div>
-  </div>
-</div>
-
-
-
-        <section className="section">
+        {/* CATEGORIES — نفس كارت الفيديو بتاع صفحة الأقسام */}
+        <section className="section gago-section">
           <div className="sectionHead">
             <div>
               <span className="eyebrow">SHOP BY SPACE</span>
               <h2>اختار مساحتك</h2>
             </div>
-            <button className="textBtn" onClick={() => onNav("categories")}>
-              الكل →
+
+            <button className="gago-text-button" onClick={() => onNav("categories")}>
+              كل التصنيفات ↗
             </button>
           </div>
-          <div className="catGrid">
-  {cats.slice(0, 4).map((c, i) => (
-    <button
-      className="product-card"
-      key={c[0]}
-      onClick={() => onNav("category", c[0])}
-    > 
-    <img className="frame" src={windowFrame} alt="" />
-      
-      <img
-        className="product-image"
-        src={[desk, desk3, desk2, desk3][i]}
-        alt={c[0]}
-      />
-     
-      <div className="product-info">
-        <span>{c[0]}</span>
-        <small>{c[1]}</small>
-      </div>
-    </button>
-  ))}
-</div>
-        </section>
 
-
-        <section className="shellSection">
-          <div className="shellCopy">
-            <span className="eyebrow">THE SHELL COLLECTION</span>
-            <h2>لؤلؤة من بورسعيد</h2>
-            <p>الصدفة أصبحت كارد... والمنتج هو اللؤلؤة.</p>
-          </div>
-      <div className="shellGrid">
-  {products.slice(0, 3).map((p, i) => (
-    <button
-      key={p.id}
-      className="shellCard"
-      onClick={() => onProduct(p)}
-    >
-      <div className="shellArt">
-        <img className="shellFrame" src={shell} alt="" />
-        <img className="shellProduct" src={[desk, desk3, desk2][i]} alt={p.name} />
-      </div>
-      <strong>{p.name}</strong>
-      <small>{money(p.price)}</small>
-    </button>
-  ))}
-</div>
-        </section>
-        {/* <section className="section darkSection">
-          <div className="eyebrow">FROM PORT SAID</div>
-          <h2>
-            إرث معماري
-            <br />
-            <em>يصنع الفرق.</em>
-          </h2>
-          <p>
-            مستوحى من الفلل الخشبية، الفنار، والميناء القديم — لكن بلغة أثاث
-            معاصرة.
-          </p>
-          <button className="outlineLight" onClick={() => onNav("about")}>
-            رحلة البراند →
-          </button>
-        </section> */}
-
-
-        <section className="section">
-          <div className="sectionHead">
-            <div>
-              <span className="eyebrow">FEATURED PIECES</span>
-              <h2>قطع لها حضور</h2>
-            </div>
-            <button className="textBtn" onClick={() => onNav("categories")}>
-              تسوق الكل →
-            </button>
-          </div>
-          <div className="productGrid">
-            {products.map((p, i) => (
-              <ProductCard
-                key={p.id}
-                p={{ ...p, img: [desk, desk, desk, desk, desk, desk][i] }}
-                onClick={() => onProduct(p)}
+          <div className="category-video-grid">
+            {cats.slice(0, 4).map((category, index) => (
+              <HomeCategoryVideoCard
+                key={category[0]}
+                cat={category}
+                index={index}
+                onNav={onNav}
               />
             ))}
           </div>
         </section>
-        <section
-          className="find"
-          style={{
-            backgroundImage: `url(${footer})`,
-          }}
-        >
-          <span>FIND GAGO</span>
-          <h2>المكان جزء من الحكاية.</h2>
-          <p>اعرف أقرب موزع ومعرض ليك.</p>
-          <button className="lightPill" onClick={() => onNav("distributors")}>
-            ابحث عن موزع →
-          </button>
+
+        {/* SHELL COLLECTION */}
+        <section className="gago-shell-section">
+          <div className="shell-heading">
+            <span className="eyebrow">THE SHELL COLLECTION</span>
+            <h2>
+              لؤلؤة من
+              <br />
+              <em>بورسعيد.</em>
+            </h2>
+            <p>
+              تفاصيل مستوحاة من البحر، وأثاث بتصميم معاصر
+              يحافظ على جمال الخامات الطبيعية.
+            </p>
+          </div>
+
+          <div className="gago-shell-grid">
+            {products.slice(0, 3).map((product, index) => (
+              <button
+                key={product.id}
+                className="gago-shell-card"
+                onClick={() => onProduct(product)}
+              >
+                <div className="shell-art">
+                  <img
+                    className="shell-product"
+                    src={product.img}
+                    alt={product.name}
+                  />
+                  <span className="shell-index">0{index + 1}</span>
+                </div>
+
+                <div className="shell-product-info">
+                  <div>
+                    <h3>{product.ar || product.name}</h3>
+                    <span>{product.tag}</span>
+                  </div>
+                  <strong>{money(product.price)}</strong>
+                </div>
+              </button>
+            ))}
+          </div>
+        </section>
+
+        {/* FEATURED PRODUCTS */}
+        <section className="section gago-section">
+          <div className="sectionHead">
+            <div>
+              <span className="eyebrow">THE GAGO EDIT</span>
+              <h2>قطع لها حضور</h2>
+            </div>
+
+            <button className="gago-text-button" onClick={() => onNav("categories")}>
+              تسوق المجموعة ↗
+            </button>
+          </div>
+
+          <div className="productGrid">
+            {products.map((product) => (
+              <ProductCard key={product.id} p={product} onClick={() => onProduct(product)} />
+            ))}
+          </div>
+        </section>
+
+        {/* FIND A SHOWROOM */}
+        <section className="gago-find gago-find-plain">
+          <div className="find-overlay" />
+          <div className="find-content">
+            <span className="eyebrow">COME CLOSER TO GAGO</span>
+            <h2>المكان جزء من الحكاية.</h2>
+            <p>اكتشف أقرب موزع ومعرض ليك.</p>
+            <button className="gago-button gago-button-light" onClick={() => onNav("distributors")}>
+              ابحث عن موزع <span>↗</span>
+            </button>
+          </div>
         </section>
       </main>
+
       <BottomNav page="home" onNav={onNav} />
-    </>
+    </div>
   );
 }
 

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import hero from "../assets/hero.webp";
+import hero from "../assets/heroHome.webp";
 import brandRef from "../assets/harbor.webp";
 import productRef from "../assets/build.webp";
 
