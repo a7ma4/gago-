@@ -52,18 +52,7 @@ function Distributors({ onNav }) {
           </div>
 
           {/* الخريطة */}
-          <div
-            className="distributors-map"
-            style={{
-              backgroundImage: `linear-gradient(#33495766,#33495799),url(${heroImg})`,
-            }}
-          >
-            <div className="video-overlay" />
-            <div className="mapPin">⌖</div>
-            <div className="mapPin p2">⌖</div>
-            <div className="mapPin p3">⌖</div>
-            <span className="video-bottom-line" />
-          </div>
+       
 
           {/* الفروع */}
           <div className="distributors-glass-list">

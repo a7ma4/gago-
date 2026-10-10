@@ -23,16 +23,10 @@ function ProductDetails({ p, onNav, onAdd }) {
 
       <div className="sea-shimmer" aria-hidden="true" />
 
-      <div className="detailLayout">
+      <div className="detailLayout" style={{marginTop:"55px"}}>
         <div className="detailMedia">
           {/* رجوع للقسم اللي جيت منه */}
-          <button
-            className="backBtn"
-            aria-label="رجوع"
-            onClick={() => (p.cat ? onNav("category", p.cat) : onNav("home"))}
-          >
-            ›
-          </button>
+       
 
           <div
             className="detailImg"

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import {
   BrowserRouter,
   Routes,
@@ -22,6 +22,7 @@ import Search from "./pages/search.jsx";
 import Profile from "./pages/profile.jsx";
 
 import { products } from "./data/index.js";
+import { useCart } from "./context/CartContext.jsx";
 
 // Maps the old onNav("pageName", arg) calls used across every page/component
 // to real routes, so none of the page files need to change.
@@ -73,49 +74,41 @@ function ListingRoute() {
   );
 }
 
-function ProductRoute({ cart, setCart }) {
+function ProductRoute() {
   const nav = useAppNav();
   const { id } = useParams();
+  const { addToCart } = useCart();
   const product = products.find((p) => String(p.id) === id) || products[0];
 
   const add = () => {
     if (!product) return;
-    setCart((currentCart) => {
-      const existing = currentCart.find((item) => item.id === product.id);
-      if (existing) {
-        return currentCart.map((item) =>
-          item.id === product.id ? { ...item, qty: item.qty + 1 } : item
-        );
-      }
-      return [...currentCart, { ...product, qty: 1 }];
-    });
+    addToCart(product, 1);
   };
 
   return <ProductDetails p={product} onNav={nav} onAdd={add} />;
 }
 
-function CartRoute({ cart, setCart }) {
+function CartRoute() {
   const nav = useAppNav();
+  const { items, updateQty, removeFromCart } = useCart();
 
   const qty = (id, change) => {
-    setCart((currentCart) => {
-      if (change === -99) {
-        return currentCart.filter((item) => item.id !== id);
-      }
-      return currentCart.map((item) =>
-        item.id === id
-          ? { ...item, qty: Math.max(1, item.qty + change) }
-          : item
-      );
-    });
+    if (change === -99) {
+      removeFromCart(id);
+      return;
+    }
+    const current = items.find((item) => item.id === id);
+    if (!current) return;
+    updateQty(id, Math.max(1, current.qty + change));
   };
 
-  return <Cart cart={cart} onNav={nav} onQty={qty} />;
+  return <Cart cart={items} onNav={nav} onQty={qty} />;
 }
 
-function CheckoutRoute({ cart }) {
+function CheckoutRoute() {
   const nav = useAppNav();
-  return <Checkout cart={cart} onNav={nav} />;
+  const { items } = useCart();
+  return <Checkout cart={items} onNav={nav} />;
 }
 
 function AboutRoute() {
@@ -144,22 +137,14 @@ function ProfileRoute() {
 }
 
 function AppRoutes() {
-  const [cart, setCart] = useState([]);
-
   return (
     <Routes>
       <Route path="/" element={<HomeRoute />} />
       <Route path="/categories" element={<CategoriesRoute />} />
       <Route path="/category/:slug" element={<ListingRoute />} />
-      <Route
-        path="/product/:id"
-        element={<ProductRoute cart={cart} setCart={setCart} />}
-      />
-      <Route
-        path="/cart"
-        element={<CartRoute cart={cart} setCart={setCart} />}
-      />
-      <Route path="/checkout" element={<CheckoutRoute cart={cart} />} />
+      <Route path="/product/:id" element={<ProductRoute />} />
+      <Route path="/cart" element={<CartRoute />} />
+      <Route path="/checkout" element={<CheckoutRoute />} />
       <Route path="/about" element={<AboutRoute />} />
       <Route path="/distributors" element={<DistributorsRoute />} />
       <Route path="/success" element={<SuccessRoute />} />

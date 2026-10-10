@@ -236,7 +236,7 @@ gap:5px;
   display: flex;
   justify-content: space-between;
   align-items: end;
-  margin-bottom: 16px;
+  margin-bottom: 16px;padding: 10px 20px;
 }
 .catGrid {
   display: grid;
@@ -380,12 +380,14 @@ z-index: 2;
   padding: 12px 18px;
 }
 .productGrid {
+  position: relative;
   width: 100%;
   display: flex;
   justify-content:center;
   align-items: end;
   flex-wrap: wrap;
   gap: 6px;
+  margin: 0 auto;
 }
 .pCard {
   width: 32%;
@@ -439,17 +441,19 @@ z-index: 2;
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: end;
   justify-content: center;
   gap: 4px;
 
+
 }
+
 .pBody small {
   font-size: 9px;
   color: var(--accent, #c08a4a);
 }
 .pBody h3 {
-  font: 600 21px "Cormorant Garamond";
+  font: 700 21px "Cormorant Garamond";
  
 }
 .pBody p {
@@ -580,8 +584,10 @@ margin: 0;
   padding: 30px 22px 15px;
 }
 .pageTitle h1 {
-  font-size: 45px;
+  font-size: 35px;
   margin: 7px 0;
+  text-align: center;
+  direction: rtl;
 }
 .pageTitle p {
   color: var(--muted);
@@ -1149,9 +1155,9 @@ margin: 0;
     margin: 30px auto;
     border-radius: 32px;
   }
-  .bottomNav {
+  /* .bottomNav {
     border-radius: 0 0 32px 32px;
-  }
+  } */
   .topbar {
     border-radius: 32px 32px 0 0;
   }
@@ -1213,13 +1219,22 @@ body {
   left: 0;
   right: 0;
   width: 100%;
-  height: 70px;
+  height: max-content;
   padding: 0 max(24px, calc((100vw - 1380px) / 2));
   background: linear-gradient(180deg, var(--deep-sea) 0%, var(--mid-sea) 100%);
   border-bottom: 1px solid #f8f3e822;
   box-shadow: 0 6px 24px #0a203318;
   border-radius: 0;
   color: var(--ink);
+}
+.topbar {
+  width: 100%;
+  padding: 6px 14px;
+  background: linear-gradient(180deg, rgba(8,18,32,0.75), transparent);
+  border-bottom: 0;
+  backdrop-filter: none;
+  color: var(--on-sea);
+  backdrop-filter: blur(3px);
 }
 
 .iconBtn {
@@ -1236,6 +1251,7 @@ body {
 .iconBtn:hover {
   color: var(--sea);
   background: var(--on-sea);
+  scale: 1.04;
   transform: translateY(-1px);
 }
 
@@ -1243,10 +1259,7 @@ body {
   font-size: 16px;
 }
 
-.brand {
-  width: 92px;
-  flex-shrink: 0;
-}
+
 
 .brand img {
   display: block;
@@ -1402,6 +1415,7 @@ body {
   max-width: 440px;
   direction: rtl;
   text-align: right;
+  padding: 10px 20px;
 }
 
 .eyebrow {
@@ -1528,9 +1542,7 @@ body {
   font-style: normal;
 }
 
-.gago-section {
-  direction: rtl;
-}
+
 
 .sectionHead {
   align-items: end;
@@ -1715,7 +1727,7 @@ justify-content: center;
   align-items: center;
   justify-content: center;
   gap: 4px ;
-  padding-top: 3px;
+  padding: 10px;
 }
 
 .shell-product-info h3 {
@@ -1727,9 +1739,9 @@ justify-content: center;
 .shell-product-info span {
   display: block;
   margin-top: 4px;
-  color: var(--muted);
-  font-size: 9px;
-  letter-spacing: 0.1em;
+  color: rgba(246, 245, 245, 0.9);
+  font-size: 13px; font-weight: bold;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
@@ -1799,7 +1811,10 @@ justify-content: center;
 .pBody h3 {
   margin: 5px 0 2px;
   color: var(--ink);
-  font: 700 21px "DM Sans", sans-serif;
+  font: 800 21px "DM Sans", sans-serif;
+}
+.listing .pCard .pBody h3{
+  color: whitesmoke;
 }
 
 .pBody p {
@@ -1823,6 +1838,7 @@ justify-content: center;
   background-position: center 50%;
   color: #fff;
   isolation: isolate;
+  margin-bottom: 60px;
 }
 
 .gago-find-plain {
@@ -1951,14 +1967,11 @@ justify-content: center;
 
 @media (max-width: 767px) {
   .topbar {
-    height: 66px;
-    padding: 0 16px;
+    /* height: 66px; */
+    padding: 10px;
   }
 
-  .brand {
-    width: 74px;
-  }
-
+ 
   .iconBtn {
     width: 38px;
     height: 38px;
@@ -2008,13 +2021,13 @@ justify-content: center;
   }
 
   .section {
-    padding: 54px 10px;
+    padding:  10px 0;
   }
 
   .gago-story {
     grid-template-columns: 1fr;
     gap: 30px;
-    padding-top: 66px;
+    padding-top: 33px;
     padding-bottom: 66px;
   }
 
@@ -2044,6 +2057,7 @@ justify-content: center;
   }
 
   .sectionHead {
+
     gap: 12px;
     margin-bottom: 20px;
   }
@@ -2110,7 +2124,7 @@ justify-content: center;
 
 
   .pBody h3 {
-    font-size: 13px;
+    font-size: 16px;
   }
 
   .pBody p {
@@ -2222,9 +2236,9 @@ body,
   color: var(--on-sea);
 }
 
-.iconBtn {
+/* .iconBtn {
   color: var(--on-sea);
-}
+} */
 
 .desktopNav button {
   color: var(--on-sea);
@@ -2342,15 +2356,12 @@ textarea:focus-visible {
 }
 
 /* ===================== Distributors page ===================== */
-.gago-distributors {
-  margin-top: 50px;
-  /* background: var(--paper); */
-}
+
 
 /* ---- Hero ---- */
 .categories-hero {
   position: relative;
-  height: min(520px, 72svh);
+  height: 90vh;
   overflow: hidden;
   isolation: isolate;
 }
@@ -2638,16 +2649,9 @@ textarea:focus-visible {
   font-family: "Noto Kufi Arabic", "DM Sans", sans-serif;
 }
 
-.gago-categories .topbar {
-  width: 100%;
-  padding: 6px 14px;
-  background: linear-gradient(180deg, rgba(8,18,32,0.65), transparent);
-  border-bottom: 0;
-  backdrop-filter: none;
-  color: var(--on-sea);
-}
-.gago-categories .topbar .iconBtn,
-.gago-categories .topbar .ico { color: var(--on-sea); }
+
+ /* .topbar .iconBtn,
+ .topbar .ico { color: var(--on-sea); } */
 
 .gago-categories .bottomNav {
   width: 100%;
@@ -2664,8 +2668,7 @@ textarea:focus-visible {
   position: relative;
   width: 100%;
   height: 100svh;
-  min-height: 520px;
-  max-height: 1100px;
+
   overflow: hidden;
   isolation: isolate;
   background: var(--sea);
@@ -2790,6 +2793,7 @@ textarea:focus-visible {
   display: grid;
   grid-template-columns: repeat(3, minmax(0,1fr));
   gap: clamp(12px,1.6vw,24px);
+  padding: 10px;
 }
 
 .category-video-card {
@@ -2903,7 +2907,7 @@ textarea:focus-visible {
   .category-featured    { aspect-ratio: 16 / 9; }
 }
 @media (max-width: 640px) {
-  .categories-hero { height: 82svh; min-height: 480px; }
+  .categories-hero { height: 65vh;  }
   .category-showcase { padding: 48px 14px 0; }
   .category-video-grid { grid-template-columns: 1fr; gap: 14px; }
   .category-video-card,
@@ -2945,14 +2949,7 @@ textarea:focus-visible {
   font-family: "Noto Kufi Arabic", "DM Sans", sans-serif;
 }
 
-.gago-listing .topbar {
-  width: 100%;
-  padding: 6px 14px;
-  background: linear-gradient(180deg, rgba(8,18,32,0.75), transparent);
-  border-bottom: 0;
-  backdrop-filter: none;
-  color: var(--on-sea);
-}
+
 .gago-listing .topbar .iconBtn,
 .gago-listing .topbar .ico { color: var(--on-sea); }
 
@@ -3070,7 +3067,7 @@ textarea:focus-visible {
 }
 
 /* كارت المنتج */
-.gago-listing .pCard {
+ .pCard {
   width: 32%;
   border: 1px solid rgba(246,241,230,0.20);
   border-radius: 18px;
@@ -3081,13 +3078,13 @@ textarea:focus-visible {
   box-shadow: 0 18px 40px rgba(5,12,28,0.40);
   transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s;
 }
-.gago-listing .pCard:hover {
+ .pCard:hover {
   transform: translateY(-5px);
   border-color: rgba(210,165,100,0.55);
   box-shadow: 0 26px 50px rgba(5,12,28,0.55);
 }
 
-.gago-listing .pImage {
+ .pImage {
 
   background-size: cover;
   background-repeat: no-repeat;
@@ -3095,15 +3092,15 @@ textarea:focus-visible {
   box-shadow: inset 0 -50px 50px -30px rgba(8,18,32,0.55);
   transition: background-size 0.8s ease;
 }
-.gago-listing .pCard:hover .pImage { background-size: 108%; }
-.gago-listing .pImage span {
+ .pCard:hover .pImage { background-size: 108%; }
+ .pImage span {
   background: rgba(8,18,32,0.70);
   color: var(--sun);
   backdrop-filter: blur(6px);
   font-size: 9px;
   padding: 6px 9px;
 }
-.gago-listing .pImage i {
+ .pImage i {
   background: rgba(8,18,32,0.70);
   color: var(--on-sea);
   width: 30px;
@@ -3111,23 +3108,19 @@ textarea:focus-visible {
   backdrop-filter: blur(6px);
 }
 
-.gago-listing .pBody { padding: 14px 16px 18px; }
-.gago-listing .pBody small {
+ .pBody { padding: 14px 16px 18px; }
+ .pBody small {
   color: var(--accent);
   font-size: 11px;
   letter-spacing: 0.06em;
 }
-.gago-listing .pBody h3 {
-  margin: 6px 0;
-  color: #fff;
-  font: 400 clamp(16px,1.6vw,21px)/1.35 "Noto Kufi Arabic","Cormorant Garamond",serif;
-}
-.gago-listing .pBody p {
+
+ .pBody p {
   color: rgba(246,241,230,0.68);
   font-size: 12px;
   line-height: 1.7;
 }
-.gago-listing .pBody strong {
+ .pBody strong {
   margin-top: 10px;
   color: var(--sun);
   font-size: 15px;
@@ -3142,18 +3135,10 @@ textarea:focus-visible {
 }
 
 
-@media (max-width: 640px) {
-  .listing-main { padding-top: 84px; }
- 
-  .gago-listing .listHead,
-  .gago-listing .filters { padding-inline: 14px; }
-  .gago-listing .pBody   { padding: 11px 12px 14px; }
-  .gago-listing .pBody p { display: none; }
-  
-}
+
 @media (prefers-reduced-motion: reduce) {
-  .gago-listing .sea-shimmer { animation: none; }
-  .gago-listing .pCard       { transition: none; }
+   .sea-shimmer { animation: none; }
+   .pCard       { transition: none; }
 }
 
 
@@ -3206,14 +3191,7 @@ textarea:focus-visible {
   animation: sea-drift 14s linear infinite;
 }
 
-.gago-detail .topbar {
-  width: 100%;
-  padding: 6px 14px;
-  background: linear-gradient(180deg, rgba(8,18,32,0.75), transparent);
-  border-bottom: 0;
-  backdrop-filter: none;
-  color: var(--on-sea);
-}
+
 .gago-detail .topbar .iconBtn,
 .gago-detail .topbar .ico { color: var(--on-sea); }
 
@@ -3441,7 +3419,7 @@ textarea:focus-visible {
 
 .gago-cart .cart-hero {
   min-height: 38vh;
-  height: 38vh;
+  height: 65vh;
 }
 
 .cart-hero-text {
@@ -3577,7 +3555,7 @@ textarea:focus-visible {
 
 .gago-profile .profile-hero {
   min-height: 38vh;
-  height: 38vh;
+  height: 65vh;
 }
 
 .profile-hero-content {
@@ -3791,8 +3769,9 @@ textarea:focus-visible {
    ===================================================== */
 
 .gago-about .about-hero {
+  margin-top: 55px;
   min-height: 38vh;
-  height: 38vh;
+  height: 65vh;
 }
 
 .about-hero-text {
@@ -3806,9 +3785,9 @@ textarea:focus-visible {
 }
 .about-hero-text h1 {
   margin: 8px 0 0;
-  font-size: 2.2rem;
+  font-size: 1.8rem;
   line-height: 1.1;
-  letter-spacing: .04em;
+  /* letter-spacing: .04em; */
 }
 .about-hero-text .eyebrow {
   font-size: .7rem;
@@ -3917,4 +3896,276 @@ textarea:focus-visible {
   background: linear-gradient(135deg, #cfe3d8, #8fb89f);
   border-color: #8fb89f;
   color: #0a1726;
+}
+
+
+/* ===== الخلفية الشفافة خلف القائمة ===== */
+.menuOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 998;
+}
+.menuOverlay.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== القائمة الجانبية - بتفتح من اليمين لأن الموقع RTL ===== */
+.sideMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 300px;
+  max-width: 82%;
+  background: #fff;
+  box-shadow: -4px 0 20px rgba(0, 0, 0, 0.18);
+  display: flex;
+  flex-direction: column;
+  transform: translateX(100%);
+  transition: transform 0.32s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: 999;
+}
+.sideMenu.open {
+  transform: translateX(0);
+}
+
+/* ===== الهيدر بتاع القائمة (اللوجو + إغلاق) ===== */
+.sideMenuHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+.sideMenuLogo {
+  height: 34px;
+  object-fit: contain;
+}
+.closeBtn {
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #f5f5f5;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.closeBtn:hover {
+  background: #eaeaea;
+}
+
+/* ===== روابط القائمة ===== */
+.sideMenuNav {
+  display: flex;
+  flex-direction: column;
+  padding: 10px 10px;
+  overflow-y: auto;
+  flex: 1;
+  gap: 2px;
+}
+.sideMenuNav button {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: right;
+  padding: 15px 14px;
+  background: none;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 500;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s, transform 0.12s;
+}
+.sideMenuNav button:hover {
+  background: #f6f4f1;
+  transform: translateX(-2px);
+}
+.sideMenuNav button:active {
+  transform: scale(0.98);
+}
+.sideMenuNav button i {
+  width: 20px;
+  text-align: center;
+  font-size: 15px;
+  color: #a98b5e; /* لون ذهبي يناسب هوية الموبيليا - عدّله لو محتاج */
+}
+
+/* فاصل بسيط بين كل رابط */
+.sideMenuNav button:not(:last-child) {
+  border-bottom: 1px solid #f7f7f7;
+}
+
+/* ===== فوتر القائمة - تسجيل الدخول / حسابي ===== */
+.sideMenuFooter {
+  border-top: 1px solid #f0f0f0;
+  padding: 16px;
+  background: #fafafa;
+}
+.accountBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 14px;
+  border-radius: 10px;
+  border: none;
+  background: #1a1a1a;
+  color: #fff;
+  font-size: 15.5px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.12s;
+}
+.accountBtn:hover {
+  background: #000;
+}
+.accountBtn:active {
+  transform: scale(0.98);
+}
+.accountBtn i {
+  font-size: 15px;
+}
+
+/* ===== سكرول بار أنضف (اختياري) ===== */
+.sideMenuNav::-webkit-scrollbar {
+  width: 4px;
+}
+.sideMenuNav::-webkit-scrollbar-thumb {
+  background: #e0e0e0;
+  border-radius: 10px;
+}
+
+
+
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background: #fff;
+  border-top: 1px solid #eee;
+  padding: 8px 0 calc(8px + env(safe-area-inset-bottom));
+  z-index: 900;
+}
+
+.bottomNav button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  background: none;
+  border: none;
+  color: #8a8a8a;
+  font-size: 11px;
+  cursor: pointer;
+  flex: 1;
+  padding: 4px 0;
+}
+
+.bottomNav button i {
+  font-size: 18px;
+}
+
+
+
+.bottomNav button.active i {
+  color: #a98b5e; /* لون البراند - عدّليه لو مختلف */
+}
+ .bottomNav {
+  width: 100%;
+  max-width: none;
+  background: linear-gradient(360deg, rgb(8, 18, 32), transparent);
+  border-top: 1px solid rgb(8, 18, 32);
+  backdrop-filter: blur(16px);
+}
+ .bottomNav button { color: rgba(246,241,230,0.55); }
+ .bottomNav .active { color: var(--accent); }
+
+
+
+
+/* ===== زرار "أضف للسلة" الدائري - في ركن صورة المنتج ===== */
+
+
+.addToCartCircle {
+  position: absolute;
+  bottom: 15px;
+  left: 10px; /* في الركن - غيّريها لـ right لو عايزة الجهة التانية */
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #fff;
+  color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+  transition: background 0.2s, transform 0.15s, color 0.2s;
+  z-index: 2;
+}
+
+.addToCartCircle:hover {
+  background: #1a1a1a;
+  color: #fff;
+  transform: scale(1.08);
+}
+
+.addToCartCircle:active {
+  transform: scale(0.92);
+}
+
+.addToCartCircle.added {
+  background: #2e7d32;
+  color: #fff;
+}
+
+
+
+
+
+
+
+
+
+ 
+
+
+ @media (max-width: 640px) {
+  .listing-main { padding-top: 84px; }
+ 
+  .gago-listing .listHead,
+  .gago-listing .filters { padding-inline: 14px; }
+  .gago-listing .pBody   { padding: 11px 12px 14px; }
+  .gago-listing .pBody p { display: none; }
+  .pCard ,.gago-shell-card  {
+  width: 49%;}
+  .gago-listing .pCard{
+    
+    width: 49%;
+    
+  }
+  .gago-listing .productGrid.listing , .productGrid{
+    padding: 10px 5px; 
+  }
+  
 }

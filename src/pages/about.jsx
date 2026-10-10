@@ -4,7 +4,7 @@ import BottomNav from "../components/bottomNav.jsx";
 
 import "../styles.css";
 
-import hero from "../assets/hero.webp";
+import hero from "../assets/hero.png";
 import brandRef from "../assets/harbor.webp";
 
 const timeline = [
@@ -33,21 +33,12 @@ function About({ onNav }) {
           <span className="eyebrow">GAGO FURNITURE</span>
           <h1>
             FROM LAND
-            <br />
+            
             TO SEA.
           </h1>
         </div>
 
-        <button
-          type="button"
-          className="hero-scroll"
-          onClick={() =>
-            storyRef.current?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          <small>الحكاية</small>
-          <span />
-        </button>
+       
       </section>
 
       {/* ===== المحتوى على خلفية البحر ===== */}

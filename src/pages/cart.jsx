@@ -33,18 +33,7 @@ function Cart({ cart, onNav, onQty }) {
           <p>قطع مختارة من بورسعيد إلى بيتك.</p>
         </div>
 
-        {cart.length > 0 && (
-          <button
-            type="button"
-            className="hero-scroll"
-            onClick={() =>
-              listRef.current?.scrollIntoView({ behavior: "smooth" })
-            }
-          >
-            <small>السلة</small>
-            <span />
-          </button>
-        )}
+      
       </section>
 
       {/* ===== المحتوى على خلفية البحر ===== */}

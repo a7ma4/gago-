@@ -6,7 +6,7 @@ import { products, cats, money } from "../data";
 
 import "../styles.css";
 
-import heroHome from "../assets/hero.jpg";
+import heroHome from "../assets/heroHome.png";
 import storyPhoto from "../assets/photo_2026-10-10_18-38-33.jpg";
 
 // فيديو الأقسام (غيّري الاسم/المسار لو عندك فيديو مختلف لكل قسم)
@@ -83,22 +83,16 @@ function Home({ onNav, onProduct }) {
 
       <main className="page">
         {/* HERO */}
-        <section
-          className="gago-hero"
-          style={{ backgroundImage: `url(${heroHome})` }}
-        >
-          <div className="hero-content">
-            <button className="hero-explore" onClick={() => onNav("categories")}>
-              <span>اكتشف المجموعة</span>
-              <span className="hero-arrow" aria-hidden="true">↗</span>
-            </button>
-          </div>
-
-          <div className="hero-bottom-label">
-            <span>صُنع في بورسعيد</span>
-            <span>GAGO FURNITURE · PORT SAID, EGYPT</span>
-          </div>
-        </section>
+       <section className="categories-hero">
+             <img
+               src={heroHome}
+               alt="GAGO Furniture – Azure Series"
+               className="categories-hero-img"
+             />
+             <div className="categories-hero-fade" />
+     
+             
+           </section>
 
         {/* STORY */}
         <section className="gago-story section">
@@ -120,7 +114,7 @@ function Home({ onNav, onProduct }) {
 
           <div className="story-image-wrap">
             <img src={storyPhoto} alt="قطعة من تصميم GAGO Furniture" />
-            <span className="image-caption">INSPIRED BY THE SEA</span>
+            {/* <span className="image-caption">INSPIRED BY THE SEA</span> */}
           </div>
         </section>
 

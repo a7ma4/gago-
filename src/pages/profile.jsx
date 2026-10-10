@@ -9,13 +9,13 @@ import heroHome from "../assets/heroHome.png";
 
 const menu = [
   ["طلباتي", "orders"],
-  ["المفضلة", "wishlist"],
+ 
   ["عناويني", "profile"],
   ["طرق الدفع", "checkout"],
   ["موزعينا", "distributors"],
   ["عن GAGO", "about"],
   ["المساعدة والدعم", "profile"],
-  ["الإعدادات", "profile"],
+ 
 ];
 
 function Profile({ onNav }) {
@@ -44,16 +44,7 @@ function Profile({ onNav }) {
           </div>
         </div>
 
-        <button
-          type="button"
-          className="hero-scroll"
-          onClick={() =>
-            menuRef.current?.scrollIntoView({ behavior: "smooth" })
-          }
-        >
-          {/* <small>حسابي</small> */}
-          <span />
-        </button>
+       
       </section>
 
       {/* ===== القائمة على خلفية البحر ===== */}
