@@ -2088,7 +2088,7 @@ justify-content: center;
   .gago-shell-section {
     grid-template-columns: 1fr;
     gap: 26px;
-    padding: 58px 8px;
+    padding: 38px 5px;
   }
 
   .shell-heading {
@@ -4157,12 +4157,15 @@ textarea:focus-visible {
   .gago-listing .filters { padding-inline: 14px; }
   .gago-listing .pBody   { padding: 11px 12px 14px; }
   .gago-listing .pBody p { display: none; }
-  .pCard ,.gago-shell-card  {
+  .pCard  {
   width: 49%;}
   .gago-listing .pCard{
     
     width: 49%;
     
+  }
+  .gago-shell-card {
+    width: 47%;
   }
   .gago-listing .productGrid.listing , .productGrid{
     padding: 10px 5px; 
